@@ -38,11 +38,11 @@
     //TODO implements this
   }
 
-  ActivityStream.prototype.hasNewerActivities = function() {
+  ActivityStream.prototype.hasNewer = function() {
     //TODO implements this
   }
 
-  ActivityStream.prototype.hasOlderActivities = function() {
+  ActivityStream.prototype.hasOlder = function() {
     //TODO implements this
   }
 
