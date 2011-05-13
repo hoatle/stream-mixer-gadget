@@ -46,6 +46,7 @@
     <script type="text/javascript" src="script/ActivityStream.js"></script>
     <script type="text/javascript" src="script/StreamMixer.js"></script>
     <script type="text/javascript" src="script/Util.js"></script>
+    <script type="text/javascript" src="script/ActivityComposer.js"></script>
     <!-- Prod Mode -->
     <!--
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>

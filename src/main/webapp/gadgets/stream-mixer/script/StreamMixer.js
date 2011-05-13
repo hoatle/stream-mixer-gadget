@@ -10,13 +10,24 @@
 //		Util.renderActivity(activityStream.getActivities());
 		Util.renderActivity(data);
 		var activityComposerParam = { 
-			"textboxID" : "statusTxt" , "textboxID":"UpdateStatusButton","textboxID": "postToTwitter",
-			onSuccess: function(){
-				
-			},
-			onSuccess: function(){
+			componentIds : {"textBoxId" : "statusTxt" , "shareButtonId":"UpdateStatusButton","twitterCheckBoxId": "postToTwitter"},
+			callback : {
+				onSuccess: function(){
+					
+				},
+				onSuccess: function(){
+				}
 			}
 		};
-		var activityComposer = new ActivityComposer(activityComposerParam); 
+		var socialAvailable = ["twitter"];
+		var activityComposer = new ActivityComposer(activityComposerParam);
+		$.each(socialAvailable, function(index,value){
+			if(AccountManager.canDisplayAddAccountForm("twitter")){
+				$("#loginForm > socialLogo").attr(src,"style/images/"+value+"_big.jpg");
+				$("#loginForm").show();
+			}
+		});
+		$("#loginForm > #socialLogo").attr("src","style/images/twitter_big.jpeg");
+		$("#loginForm").show();
   });
 })(jQuery);
