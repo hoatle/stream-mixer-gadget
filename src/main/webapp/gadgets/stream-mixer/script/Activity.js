@@ -89,7 +89,7 @@
   }
 
   //enum constants for activity type
-  Activity.type = {
+  Activity.Type = {
     TWITTER      : 'twitter',
     EXO_PLATFORM : 'exo',
     FACEBOOK     : 'facebook',
