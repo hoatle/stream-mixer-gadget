@@ -4,4 +4,35 @@
 -->
 <messageBundle>
   <msg name="loading">Loading... Please wait...</msg>
+  <msg name="title">Stream Mixer</msg>
+  <msg name="description">Stream Mixer: eXo Platform, Twitter, Facebook, LinkedIn...</msg>
+  <msg name="what_are_you_working_on">Sur quoi travaillez-vous?</msg>
+  <msg name="an_undetermined_amount_of_time_ago">Il y a un certain temps.</msg>
+  <msg name="less_than_a_minute_ago">Il y a moins d'une minute.</msg>
+  <msg name="about_a_minute_ago">Environ il y a une minute.</msg>
+  <msg name="about_0_minutes_ago">Environ il y a {0} minutes.</msg>
+  <msg name="about_an_hour_ago">Environ il y a une heure.</msg>
+  <msg name="about_0_hours_ago">Il y a {0} heures.</msg>
+  <msg name="sunday">Dimanche</msg>
+  <msg name="monday">Lundi</msg>
+  <msg name="tuesday">Mardi</msg>
+  <msg name="wednesday">Mercredi</msg>
+  <msg name="thursday">Jeudi</msg>
+  <msg name="friday">Vendredi</msg>
+  <msg name="saturday">Samedi</msg>
+  <msg name="january">Janvier</msg>
+  <msg name="february">Février</msg>
+  <msg name="march">Mars</msg>
+  <msg name="april">Avril</msg>
+  <msg name="may">Mai</msg>
+  <msg name="june">Juin</msg>
+  <msg name="july">Juillet</msg>
+  <msg name="august">Août</msg>
+  <msg name="september">Septembre</msg>
+  <msg name="october">Octobre</msg>
+  <msg name="november">Novembre</msg>
+  <msg name="december">Decembre</msg>
+  <msg name="am">AM</msg>
+  <msg name="pm">PM</msg>
+  <msg name="day_date_month_year_at_hour_min_ap">{0} {1} {2} {3} at {4} : {5} : {6}.</msg>
 </messageBundle>
