@@ -9,6 +9,7 @@
   <script type="text/javascript" src="../script/Activity.js"></script>
   <script type="text/javascript" src="../script/ActivityStream.js"></script>
   <script type="text/javascript" src="../script/Locale.js"></script>
+  <script type="text/javascript" src="../script/Util.js"></script>
 
   <script>
     $(document).ready(function() {
@@ -59,6 +60,15 @@
         ok(Locale.getMsg, 'Locale.getMsg must be defined.');
       });
 
+      module('Util Test');
+
+      test('check Util class', function() {
+        ok(Util, 'Util must be defined.');
+      });
+
+      test('check Util.getPrettyTime', function() {
+        ok(Util.getPrettyTime, 'Util.getPrettyTime must be defined.');
+      })
     });
   </script>
 
