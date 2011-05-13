@@ -7,7 +7,7 @@
 		$("#Activities").show();
 		var activityStream = new ActivityStream();
 		
-		Util.renderActivity(activityStream.getActivities());
+//		Util.renderActivity(activityStream.getActivities());
 		Util.renderActivity(data);
 		var activityComposerParam = { 
 			"textboxID" : "statusTxt" , "textboxID":"UpdateStatusButton","textboxID": "postToTwitter",
