@@ -5,10 +5,31 @@
 
 
 (function() {
-  var window_ = this, activities = [], newerActivities = [], olderActivity = [];
+  var window_ = this,
+      unifiedActivities = [], newerUnifiedActivities = [], olderUnifiedActivities = [],
+      exoActivities = [], newerExoActivities = [], olderExoActivities = [],
+      twitterActivities = [], newerTwitterActivities = [], olderTwitterActivities = [],
+      facebookActivities = [], newerFacebookActivities = [], olderFacebookActivities = [];
+
 
   /**
    * Constructor.
+   *
+   * For example:
+   *
+   * var params = {
+   *   selectedType: ActivityStream.Type.UNIFIED, //this is default value
+   *   callback: {
+   *     //when init successfully
+   *     onSuccess: function() {
+   *
+   *     },
+   *     //when init failed
+   *     onFail: function() {
+   *
+   *     }
+   *   }
+   * };
    *
    * @param params
    */
@@ -23,6 +44,26 @@
     TWITTER      : 'twitter',
     FACEBOOK     : 'facebook',
     LINKEDIN     : 'linkedin'
+  }
+
+  /**
+   * Inits, gets activities, try to lazy loading.
+   *
+   * @param params
+   */
+  ActivityStream.prototype.init = function(params) {
+    this.selectedType = params.selectedType || ActivityStream.Type.UNIFIED;
+    this.successCallback = params.onSuccess;
+    this.failCallback = params.onFail;
+  };
+
+  ActivityStream.prototype.getSelectedType = function() {
+    return this.selectedType;
+  };
+
+
+  ActivityStream.prototype.setSelectedType = function(type) {
+    this.selectedType = type;
   }
 
 
