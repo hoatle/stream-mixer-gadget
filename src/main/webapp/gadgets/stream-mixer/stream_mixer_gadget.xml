@@ -41,12 +41,15 @@
     <!-- Dev Mode -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.js"></script>
+    <script type="text/javascript" src="script/Activity.js"></script>
+    <script type="text/javascript" src="script/ActivityStream.js"></script>
+    <script type="text/javascript" src="script/StreamMixer.js"></script>
     <!-- Prod Mode -->
     <!--
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="script/merged.min.js"></script>
     -->
-    <script type="text/javascript" src="script/StreamMixer.js"></script>
     <div id="StatusLoading" class="StatusLoading">__MSG_loading__</div>
   ]]>
   </Content>
