@@ -69,8 +69,19 @@
   }
 
 
-  ActivityStream.prototype.getActivities = function() {
-    return this.activities;
+  /**
+   * Gets the latest number of activities.
+   *
+   * If count == null, count = 20;
+   *
+   * @param count
+   */
+  ActivityStream.prototype.getActivities = function(count) {
+    if (this.selectedType === ActivityStream.Type.UNIFIED) {
+
+    } else if (this.selectedType === ActivityStream.Type.EXO_PLATFORM) {
+      exoActivities = getExoActivities(count);
+    }
   }
 
   ActivityStream.prototype.putActivity = function(newActivity) {
@@ -121,6 +132,11 @@
    */
   ActivityStream.prototype.getNewer = function(params) {
     //TODO implements this
+  }
+
+  function getExoActivities(count) {
+    var count = count || 20;
+
   }
 
 

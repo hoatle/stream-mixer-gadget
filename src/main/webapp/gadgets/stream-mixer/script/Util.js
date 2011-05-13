@@ -100,29 +100,48 @@
     }
 
   };
-  	Util.sortActivity = function (data){
-		data.sort(function(act1,act2){
-			return act1.posted - act2.posted;
-		});
-	};
 
-	Util.AddActivity = function (activity){
-		var newTemplate = $("#Activitytemplate").clone();
-		
-		newTemplate.attr("id","Activity")
-		$("#avatarIcon",newTemplate).attr( "src" , activity.avatar) ;
-		$("#activityIcon",newTemplate).attr( "src" , activity.appIcon) ;
-		$("#displayName",newTemplate).html(activity.displayName);
-		$("#content",newTemplate).html(activity.content);
-		$("#postedDay",newTemplate).html(activity.prettyTime);	
-		
-		$("#Activities").append(newTemplate);
-		newTemplate.show();
-	};
-	Util.renderActivity = function (data){
-		$.each(data,function(index, value) { 
-			  Util.AddActivity(value);
-		});		
-	};
+
+  /**
+   * Sorts activities based on its postedTime.
+   * @param activities
+   */
+  Util.sortActivities = function(activities) {
+    activities.sort(function(act1, act2) {
+      return act1.postedTime - act2.postedTime;
+    });
+  };
+
+  /**
+   * Adds activity for displaying.
+   *
+   * @param activity
+   */
+  Util.addActivity = function(activity) {
+    var newTemplate = $("#Activitytemplate").clone();
+
+    newTemplate.attr("id", "Activity");
+    $("#avatarIcon", newTemplate).attr("src", activity.avatar);
+    $("#activityIcon", newTemplate).attr("src", activity.appIcon);
+    $("#displayName", newTemplate).html(activity.displayName);
+    $("#content", newTemplate).html(activity.content);
+    $("#postedDay", newTemplate).html(activity.prettyTime);
+
+    $("#Activities").append(newTemplate);
+    newTemplate.show();
+  };
+
+  /**
+   * Sends the array of Activity objects to be rendered.
+   *
+   * @param activities
+   */
+  Util.renderActivity = function(activities) {
+    $.each(activities, function(index, value) {
+      Util.addActivity(value);
+    });
+  };
+
+  //exposes
   window_.Util = Util;
 })();
