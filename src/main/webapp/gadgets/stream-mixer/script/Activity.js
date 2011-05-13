@@ -103,7 +103,7 @@
     this.profileUrl = params.profileUrl;
     this.avatarUrl = params.avatarUrl;
     this.postedTime = params.postedTime;
-    this.prettyTime = toPrettyTime(params.postedTime);
+    this.prettyTime = getPrettyTime(params.postedTime);
     this.appIcon    = getAppIcon(params.type);
   };
 
@@ -113,7 +113,7 @@
    *
    * @param postedTimeStamp
    */
-  function toPrettyTime(postedTimeStamp) {
+  function getPrettyTime(postedTimeStamp) {
     //TODO implement this
   };
 
