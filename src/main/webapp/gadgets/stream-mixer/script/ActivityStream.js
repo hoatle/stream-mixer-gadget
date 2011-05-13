@@ -34,7 +34,9 @@
    * @param params
    */
   function ActivityStream(params) {
-    this.init(params);
+    if (params) {
+      this.init(params);
+    }
   }
 
   //Enum constants for activity stream type
