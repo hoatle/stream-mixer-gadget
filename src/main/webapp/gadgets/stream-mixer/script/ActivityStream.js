@@ -18,9 +18,11 @@
 
   //Enum constants for activity stream type
   ActivityStream.Type = {
-    UNIFIED : 'unified',
-    EXO     : 'exo',
-    TWITTER : 'twitter'
+    UNIFIED      : 'unified',
+    EXO_PLATFORM : 'exo',
+    TWITTER      : 'twitter',
+    FACEBOOK     : 'facebook',
+    LINKEDIN     : 'linkedin'
   }
 
 
