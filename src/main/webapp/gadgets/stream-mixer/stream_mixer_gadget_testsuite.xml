@@ -66,7 +66,7 @@
     <script type="text/javascript" src="script-test/UtilTest.js"></script>
 
 
-    <h1 id="qunit-header">Stream Mixer Unit Test Suite as a Gadget</h1>
+    <h2 id="qunit-header">Stream Mixer Gadget Test Suite</h2>
 
     <h2 id="qunit-banner"></h2>
 
