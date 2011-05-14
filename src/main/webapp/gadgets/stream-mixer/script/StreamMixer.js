@@ -3,7 +3,7 @@
  */
 (function($) {
   $(document).ready(function() {
-		$("#statusForm").show();
+		$("#ActivityContent").show();
 		$("#Activities").show();
 		var activityStream = new ActivityStream();
 		
@@ -23,11 +23,10 @@
 		var activityComposer = new ActivityComposer(activityComposerParam);
 		$.each(socialAvailable, function(index,value){
 			if(AccountManager.canDisplayAddAccountForm("twitter")){
-				$("#loginForm > socialLogo").attr(src,"style/images/"+value+"_big.jpg");
-				$("#loginForm").show();
+				$("#LoginForm > div > #socialLogo").attr("src","style/images/"+value+"_big.jpeg");
+				$("#ActivityContent").hide();
+				$("#LoginForm").show();
 			}
 		});
-		$("#loginForm > #socialLogo").attr("src","style/images/twitter_big.jpeg");
-		$("#loginForm").show();
   });
 })(jQuery);

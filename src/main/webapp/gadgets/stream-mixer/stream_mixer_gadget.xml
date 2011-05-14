@@ -29,7 +29,7 @@
     <Locale lang="vi" messages="locale/vi_ALL.xml" />
     <Require feature="opensocial-0.8" />
     <Require feature="dynamic-height" />
-    <Require feature="settitle" />
+    <Require feature="settitle" />  
     <Require feature="views" />
     <Require feature="minimessage" />
   </ModulePrefs>
