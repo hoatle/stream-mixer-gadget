@@ -1,0 +1,31 @@
+Stream Mixer Gadget (https://github.com/hoatle/stream-mixer-gadget/tree/master/src/main/webapp/gadgets)
+  Activity Stream Mixer for eXo Platform, Twitter, Facebook, LinkedIn...
+
+Developers:
+- Hoat Le (http://hoatle.net)
+//TODO phuonglm
+
+The release package includes:
+
+|-- README
+|-- RELEASE-NOTES
+|-- ROADMAP
+|-- stream_mixer_gadget.xml
+|-- locale
+    |-- ALL_ALL.xml
+    |-- en_ALL.xml
+    |-- fr_ALL.xml
+    |-- vi_ALL.xml
+|-- script
+    |-- debug.js
+    |-- jquery-1.6.1.min.js
+    |-- jquery-ui-1.18.12.min.js
+    |-- merged.js
+|-- style
+    |-- jquery-ui-1.8.12.custom.css
+    |-- style.css
+    |-- images
+        |-- [*.png,*.jpeg]
+
+
+
