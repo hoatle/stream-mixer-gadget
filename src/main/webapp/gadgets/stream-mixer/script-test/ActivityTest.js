@@ -7,13 +7,14 @@
     });
 
     test('Activity object', function() {
+      var timeStamp = new Date().getTime();
       var params = {
         type: 'exo',
         content: 'hello world test',
         displayName: 'demo',
         profileUrl: 'http://abc.com/profile/demo',
         avatarUrl: 'http://abc.com/profile/avatar/demo.jpg',
-        postedTime: new Date().getTime()
+        postedTime: timeStamp
       };
       var activity = new Activity(params);
       ok(activity, 'activity object must be created.');
