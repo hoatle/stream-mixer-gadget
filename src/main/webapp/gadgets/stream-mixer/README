@@ -20,7 +20,7 @@ The release package includes:
     |-- debug.js
     |-- jquery-1.6.1.min.js
     |-- jquery-ui-1.18.12.min.js
-    |-- merged.js
+    |-- merged.min.js
 |-- style
     |-- jquery-ui-1.8.12.custom.css
     |-- style.css

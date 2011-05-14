@@ -1,5 +1,8 @@
 /*
- * Activity class to hold data structure of activities
+ * Activity class to hold data structure of activities.
+ *
+ * depends on:
+ * Configuration.js
  */
 
 (function() {

@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="style/qunit.css" />
     <link rel="stylesheet" type="text/css" href="style/jquery-ui-1.8.12.custom.css" />
     <link rel="stylesheet" type="text/css" href="style/style.css" />
-    <!-- Dev Mode -->
     <script type="text/javascript" src="script/debug.js"></script>
+
+    <!-- Dev Mode -->
     <script type="text/javascript" src="script/jquery-1.6.1.js"></script>
     <script type="text/javascript" src="script/jquery-ui-1.18.12.js"></script>
     <script type="text/javascript" src="script/qunit.js"></script>

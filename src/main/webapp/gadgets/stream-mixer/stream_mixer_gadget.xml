@@ -39,18 +39,19 @@
     <link rel="stylesheet" type="text/css" href="style/style.css" />
     <script type="text/javascript" src="script/debug.js"></script>
     <!-- Dev Mode -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.js"></script>
+    <script type="text/javascript" src="script/jquery-1.6.1.js"></script>
+    <script type="text/javascript" src="script/jquery-ui-1.18.12.js"></script>
+    <script type="text/javascript" src="script/qunit.js"></script>
+
+    <script type="text/javascript" src="script/Configuration.js"></script>
     <script type="text/javascript" src="script/Locale.js"></script>
+    <script type="text/javascript" src="script/Util.js"></script>
     <script type="text/javascript" src="script/Activity.js"></script>
     <script type="text/javascript" src="script/ActivityStream.js"></script>
-    <script type="text/javascript" src="script/StreamMixer.js"></script>
-    <script type="text/javascript" src="script/Util.js"></script>
-    <script type="text/javascript" src="script/ActivityComposer.js"></script>
     <!-- Prod Mode -->
     <!--
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="script/jquery-1.16.1.min.js"></script>
+    <script type="text/javascript" src="script/jquery-ui-1.18.12.min.js"></script>
     <script type="text/javascript" src="script/merged.min.js"></script>
     -->
     <div id="StreamMixer">
