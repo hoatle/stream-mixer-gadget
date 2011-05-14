@@ -9,6 +9,7 @@
   <msg name="what_are_you_working_on">Bạn đang làm việc gì?</msg>
   <msg name="share">Chia sẻ</msg>
   <msg name="an_undetermined_amount_of_time_ago">Không thể xác định thời gian.</msg>
+  <msg name="just_now">Mới đây</msg>
   <msg name="less_than_a_minute_ago">Gần 1 phút trước.</msg>
   <msg name="about_a_minute_ago">Khoảng 1 phút trước.</msg>
   <msg name="about_0_minutes_ago">Khoảng {0} phút trước.</msg>

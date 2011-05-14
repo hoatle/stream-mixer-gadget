@@ -10,6 +10,7 @@
   <msg name="share">Share</msg>
   <msg name="problem_happens_to_fix_soon">Sorry that problem happens. We will fix this soon.</msg>
   <msg name="an_undetermined_amount_of_time_ago">An undeterminded amount of time ago.</msg>
+  <msg name="just_now">Just now</msg>
   <msg name="less_than_a_minute_ago">Less than a minute ago.</msg>
   <msg name="about_a_minute_ago">About a minute ago.</msg>
   <msg name="about_0_minutes_ago">About {0} minutes ago.</msg>

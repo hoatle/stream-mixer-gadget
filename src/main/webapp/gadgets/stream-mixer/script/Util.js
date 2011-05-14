@@ -2,7 +2,8 @@
  * The utility class:
  * - Convert timestamp to pretty name
  *
- * - Requires: Locale
+ * depends on:
+ * Locale.js
  */
 
 (function() {
@@ -16,7 +17,7 @@
   }
 
   /**
-   * Converts timestamp to pretty time
+   * Converts a date object to pretty time.
    * Use resource bundle
    * //TODO about (?) days ago?
    * @param  date Number
@@ -75,7 +76,9 @@
 
     time = (new Date().getTime() - date.getTime()) / 1000;
 
-    if (time < 60) {
+    if (time < 30) {
+      return Locale.getMsg('just_now');
+    } else if (time < 60) {
       return Locale.getMsg('less_than_a_minute_ago');
     } else {
       if (time < 120) {

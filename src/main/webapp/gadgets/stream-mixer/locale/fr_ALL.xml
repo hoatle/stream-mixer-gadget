@@ -8,6 +8,7 @@
   <msg name="description">Stream Mixer: eXo Platform, Twitter, Facebook, LinkedIn...</msg>
   <msg name="what_are_you_working_on">Sur quoi travaillez-vous?</msg>
   <msg name="an_undetermined_amount_of_time_ago">Il y a un certain temps.</msg>
+  <msg name="just_now">Tout à l'heure</msg>
   <msg name="less_than_a_minute_ago">Il y a moins d'une minute.</msg>
   <msg name="about_a_minute_ago">Environ il y a une minute.</msg>
   <msg name="about_0_minutes_ago">Environ il y a {0} minutes.</msg>

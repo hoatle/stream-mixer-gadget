@@ -2,28 +2,28 @@
   $(document).ready(function() {
     module('UtilTest');
 
-    test('check Util class', function() {
+    test('Util class', function() {
       ok(Util, 'Util must be defined.');
     });
 
-    test('check Util.getPrettyTime', function() {
+    test('Util#getPrettyTime', function() {
       ok(Util.getPrettyTime, 'Util.getPrettyTime must be defined.');
+      var justNowTimeStamp = new Date().getTime() - 1000;
+      equal(Util.getPrettyTime(new Date(justNowTimeStamp)), Locale.getMsg('just_now'));
     });
 
-    test('check Util.sortActivities', function() {
+    test('Util#sortActivities', function() {
       var oldTime = new Date().getTime();
-      var oldActivity = new Activity({
-        type: Activity.Type.EXO_PLATFORM,
+      var oldActivity = {
         content: 'old activity',
         postedTime: oldTime
-      });
+      };
 
       var newTime = oldTime + 100;
-      var newActivity = new Activity({
-        type: Activity.Type.TWITTER,
+      var newActivity = {
         content: 'new activity',
         postedTime: newTime
-      });
+      };
 
       var activities = [oldActivity, newActivity];
 

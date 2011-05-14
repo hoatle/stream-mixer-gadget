@@ -44,9 +44,9 @@
     <script type="text/javascript" src="script/jquery-ui-1.18.12.js"></script>
     <script type="text/javascript" src="script/qunit.js"></script>
     <script type="text/javascript" src="script/Locale.js"></script>
+    <script type="text/javascript" src="script/Util.js"></script>
     <script type="text/javascript" src="script/Activity.js"></script>
     <script type="text/javascript" src="script/ActivityStream.js"></script>
-    <script type="text/javascript" src="script/Util.js"></script>
 
     <!-- Prod Mode -->
     <!--
