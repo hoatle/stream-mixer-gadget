@@ -114,7 +114,7 @@
    * @param postedTimeStamp
    */
   function getPrettyTime(postedTimeStamp) {
-    //TODO implement this
+    return Util.getPrettyTime(new Date(postedTimeStamp));
   };
 
   /**
