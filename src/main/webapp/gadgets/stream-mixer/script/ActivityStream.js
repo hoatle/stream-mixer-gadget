@@ -6,6 +6,9 @@
 
 (function() {
   var window_ = this,
+      selectedType,
+      successCallback,
+      failCallback,
       unifiedActivities = [], newerUnifiedActivities = [], olderUnifiedActivities = [],
       exoActivities = [], newerExoActivities = [], olderExoActivities = [],
       twitterActivities = [], newerTwitterActivities = [], olderTwitterActivities = [],
@@ -13,30 +16,10 @@
 
 
   /**
-   * Constructor.
+   * ActivityStream class definition
    *
-   * For example:
-   *
-   * var params = {
-   *   selectedType: ActivityStream.Type.UNIFIED, //this is default value
-   *   callback: {
-   *     //when init successfully
-   *     onSuccess: function() {
-   *
-   *     },
-   *     //when init failed
-   *     onFail: function() {
-   *
-   *     }
-   *   }
-   * };
-   *
-   * @param params
    */
-  function ActivityStream(params) {
-    if (params) {
-      this.init(params);
-    }
+  function ActivityStream() {
   }
 
   //Enum constants for activity stream type
@@ -49,107 +32,116 @@
   }
 
   /**
-   * Inits, gets activities, try to lazy loading.
+   * For example:
+   *
+   * var params = {
+   *   selectedType: ActivityStream.Type.UNIFIED, //this is default value
+   *   callback: {
+   *     //when the call is successfully
+   *     onSuccess: function() {
+   *
+   *     },
+   *     //when something is wrong
+   *     onFail: function(msg) {
+   *
+   *     }
+   *   }
+   * };
    *
    * @param params
    */
-  ActivityStream.prototype.init = function(params) {
-    this.selectedType = params.selectedType || ActivityStream.Type.UNIFIED;
-    this.successCallback = params.onSuccess;
-    this.failCallback = params.onFail;
+  ActivityStream.configure = function(params) {
+    selectedType = params.selectedType || ActivityStream.Type.UNIFIED;
+    successCallback = params.onSuccess;
+    failCallback = params.onFail;
   };
 
-  ActivityStream.prototype.getSelectedType = function() {
-    return this.selectedType;
+  /**
+   * Gets the selected type.
+   */
+  ActivityStream.getSelectedType = function() {
+    return selectedType;
   };
 
 
-  ActivityStream.prototype.setSelectedType = function(type) {
-    this.selectedType = type;
-  }
+  /**
+   * Sets the selected type.
+   * @param type
+   */
+  ActivityStream.setSelectedType = function(type) {
+    selectedType = type;
+  };
 
 
   /**
    * Gets the latest number of activities.
    *
-   * If count == null, count = 20;
+   * If count == null or 0, the default value will be used (Configuration.getNumberOfActivitiesEachFetch()).
    *
    * @param count
    */
-  ActivityStream.prototype.getActivities = function(count) {
-    if (this.selectedType === ActivityStream.Type.UNIFIED) {
+  ActivityStream.getActivities = function(count) {
+    if (selectedType === ActivityStream.Type.UNIFIED) {
 
-    } else if (this.selectedType === ActivityStream.Type.EXO_PLATFORM) {
+    } else if (selectedType === ActivityStream.Type.EXO_PLATFORM) {
       exoActivities = getExoActivities(count);
     }
-  }
-
-  ActivityStream.prototype.putActivity = function(newActivity) {
-    //TODO implements this
-  }
-
-  ActivityStream.prototype.removeActivity = function(newActivity) {
-    //TODO implements this
-  }
+  };
 
   /**
-   * Returns number of newer activiites based on the list of activities.
+   * Returns number of newer activities on the selected stream.
    *
    * If no newer activities found, return 0.
    * If yes, return the number of older activities.
    */
-  ActivityStream.prototype.hasNewer = function() {
+  ActivityStream.hasNewer = function() {
     //TODO implements this
   }
 
   /**
-   * Returns number of older activiites based on the list of activities.
+   * Returns number of older activities on the selected stream.
    *
    * If no older activities found, return 0.
    * If yes, return the number of older activities.
    */
-  ActivityStream.prototype.hasOlder = function() {
+  ActivityStream.hasOlder = function() {
     //TODO implements this
   }
 
   /**
    * Gets older activities based on a specified activity, the count is optional. If no count is specified,
-   * use default value
-   * from service provider.
+   * use default value from service provider.
    *
-   * For example:
    *
-   * var params = {
-   *   baseActivity: activity,
-   *   count: 20
-   * };
-   *
-   * @param params
+   * @param count
    */
-  ActivityStream.prototype.getOlder = function(params) {
+  ActivityStream.getOlder = function(count) {
     //TODO implements this
-  }
+  };
 
   /**
    * Gets newer activities based on a specified activity, the count is optional.
    *
-   * For example:
-   *
-   * var params = {
-   *   baseActivity: activity,
-   *   count: 20
-   * }
-   *
-   * @param params
+   * @param count
    */
-  ActivityStream.prototype.getNewer = function(params) {
+  ActivityStream.getNewer = function(count) {
     //TODO implements this
-  }
+  };
+
+
 
   function getExoActivities(count) {
     var count = count || 20;
 
-  }
+  };
+
+  function putActivity(newActivity) {
+    //TODO implements this
+  };
+
+  function removeActivity(existingActivity) {
+    //TODO implements this
+  };
 
 
   // exposes
