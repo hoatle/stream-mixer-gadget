@@ -26,66 +26,67 @@
     //Getters, Setters
     Activity.prototype.getType = function() {
       return this.type;
-    }
+    };
 
     Activity.prototype.setType = function(activityType) {
       this.type = activityType;
-    }
+    };
 
     Activity.prototype.getContent = function() {
       return this.content;
-    }
+    };
 
     Activity.prototype.setContent = function(activityContent) {
       this.content = activityContent;
-    }
+    };
 
     Activity.prototype.getDisplayName = function() {
       return this.displayName;
-    }
+    };
 
     Activity.prototype.setDisplayName = function(userDisplayName) {
       this.displayName = userDisplayName;
-    }
+    };
 
     Activity.prototype.getProfileUrl = function() {
       return this.profileUrl;
-    }
+    };
 
     Activity.prototype.setProfileUrl = function(userProfileUrl) {
       this.profileUrl = userProfileUrl;
-    }
+    };
 
     Activity.prototype.getAvatarUrl = function() {
       return this.avatarUrl;
-    }
+    };
+
     Activity.prototype.setAvatarUrl = function(userAvatarUrl) {
       this.avatarUrl = userAvatarUrl;
-    }
+    };
 
     Activity.prototype.getPostedTime = function() {
       return this.postedTime;
-    }
+    };
 
     Activity.prototype.setPostedTime = function(activityPostedTime) {
       this.postedTime = activityPostedTime;
-    }
+    };
 
     Activity.prototype.getPrettyTime = function() {
       return this.prettyTime;
-    }
+    };
 
     Activity.prototype.setPrettyTime = function(activityPrettyTime) {
       this.prettyTime = activityPrettyTime;
-    }
+    };
 
     Activity.prototype.getAppIcon = function() {
       return this.appIcon;
-    }
+    };
 
     Activity.prototype.setAppIcon = function(activityAppIcon) {
       this.appIcon = activityAppIcon;
-    }
+    };
   }
 
   //enum constants for activity type
@@ -123,7 +124,7 @@
    * @param activityType
    */
   function getAppIcon(activityType) {
-    //TODO implement this
+    return Configuration.getBaseUrl() + 'style/images/' + activityType + '.png';
   };
 
   //exposes

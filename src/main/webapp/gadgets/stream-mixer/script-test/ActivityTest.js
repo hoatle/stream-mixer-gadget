@@ -6,7 +6,7 @@
       ok(Activity, 'Activity must be defined.');
     });
 
-    test('create Activity object', function() {
+    test('Activity object', function() {
       var params = {
         type: 'exo',
         content: 'hello world test',
@@ -21,7 +21,10 @@
       equal(activity.getContent(), params.content, 'activity.content must be' + params.content);
       equal(activity.getPrettyTime(), Locale.getMsg('just_now'),
               'activity.getPrettyTime() must be ' + Locale.getMsg('just_now'));
-      //equal(activity.getAppIcon(), );
+      var expectedAppIcon = Configuration.getBaseUrl() + 'style/images/exo.png';
+      equal(activity.getAppIcon(), expectedAppIcon,
+            'activity.getAppIcon() must return: ' + expectedAppIcon);
+
     });
   });
 })(jQuery);
