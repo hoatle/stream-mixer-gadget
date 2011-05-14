@@ -43,6 +43,8 @@
     <script type="text/javascript" src="script/jquery-1.6.1.js"></script>
     <script type="text/javascript" src="script/jquery-ui-1.18.12.js"></script>
     <script type="text/javascript" src="script/qunit.js"></script>
+
+    <script type="text/javascript" src="script/Configuration.js"></script>
     <script type="text/javascript" src="script/Locale.js"></script>
     <script type="text/javascript" src="script/Util.js"></script>
     <script type="text/javascript" src="script/Activity.js"></script>
@@ -56,6 +58,7 @@
     -->
 
     <!-- Test suite -->
+    <script type="text/javascript" src="script-test/ConfigurationTest.js"></script>
     <script type="text/javascript" src="script-test/LocaleTest.js"></script>
     <script type="text/javascript" src="script-test/ActivityTest.js"></script>
     <script type="text/javascript" src="script-test/ActivityStreamTest.js"></script>
