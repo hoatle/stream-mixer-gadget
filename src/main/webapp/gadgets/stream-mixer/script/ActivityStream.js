@@ -92,10 +92,22 @@
     //TODO implements this
   }
 
+  /**
+   * Returns number of newer activiites based on the list of activities.
+   *
+   * If no newer activities found, return 0.
+   * If yes, return the number of older activities.
+   */
   ActivityStream.prototype.hasNewer = function() {
     //TODO implements this
   }
 
+  /**
+   * Returns number of older activiites based on the list of activities.
+   *
+   * If no older activities found, return 0.
+   * If yes, return the number of older activities.
+   */
   ActivityStream.prototype.hasOlder = function() {
     //TODO implements this
   }
