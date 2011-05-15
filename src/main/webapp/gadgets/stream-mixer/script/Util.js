@@ -161,6 +161,31 @@
   };
 
   /**
+   * Gets current viewer.
+   *
+   * For examples:
+   * var opts = {};
+   * opts[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] =
+   *     [opensocial.Person.Field.ID,
+   *      opensocial.Person.Field.NAME,
+   *      opensocial.Person.Field.PROFILE_URL,
+   *      opensocial.Person.Field.THUMBNAIL_URL
+   *     ];
+   *
+   * Util.getViewer(opts, function(response) {
+   *    //opensocial data response
+   * });
+   *
+   * @param requestOptions
+   * @param callback
+   */
+  Util.getViewer = function(requestOptions, callback) {
+    var req = opensocial.newDataRequest();
+    req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.VIEWER, requestOptions), 'viewer');
+    req.send(callback);
+  };
+
+  /**
    * Adds activity for displaying.
    *
    * @param activity
