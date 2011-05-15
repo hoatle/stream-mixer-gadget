@@ -186,7 +186,12 @@
    */
   ActivityStream.getActivities = function(count) {
     if (selectedType === ActivityStream.Type.UNIFIED) {
+      unifiedActivities = [];
+      unifiedActivities.concat(exoActivities);
+      unifiedActivities.concat(twitterActivities);
+      Util.sortActivities(unifiedActivities);
       return unifiedActivities;
+
     } else if (selectedType === ActivityStream.Type.EXO_PLATFORM) {
       Util.sortActivities(exoActivities);
       return exoActivities; //TODO only return ~ 20 activities/ page
