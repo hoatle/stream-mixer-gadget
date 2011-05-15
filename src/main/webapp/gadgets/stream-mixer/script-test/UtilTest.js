@@ -78,6 +78,25 @@
       });
     });
 
+    asyncTest('Util#getViewerFriends', function() {
+      var opts = {};
+      opts[opensocial.DataRequest.PeopleRequestFields.FIRST] = 0;
+      opts[opensocial.DataRequest.PeopleRequestFields.MAX] = 100;
+      opts[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] =
+              [opensocial.Person.Field.ID,
+                opensocial.Person.Field.NAME,
+                opensocial.Person.Field.PROFILE_URL,
+                opensocial.Person.Field.THUMBNAIL_URL
+              ];
+      Util.getViewerFriends(opts, function(res) {
+        var viewerFriends = res.get('viewerFriends').getData();
+        ok(viewerFriends, 'viewerFriends must not be null.');
+        debug.info(viewerFriends);
+        equal(viewerFriends.size(), 0, 'viewerFriends.size() must return 0');
+        start();
+      });
+    });
+
   });
 
 })(jQuery);
