@@ -12,7 +12,7 @@
    */
   function AccountManager() {
 
-  }
+  };
 
   AccountManager.Type = {
     TWITTER: 'twitter'//currently only twitter for basic authentication, later must use 0Auth
@@ -33,8 +33,8 @@
    * @param account
    */
   AccountManager.addAccount = function(type, account) {
-    accounts.type = account;
-  }
+    accounts[type] = account;
+  };
 
   /**
    * Gets a count by type.
@@ -47,28 +47,43 @@
    * @static
    */
   AccountManager.getAccount = function(type) {
-    return accounts.type;
-  }
+    return accounts[type];
+  };
 
   /**
-   * Checks whether an account is authenticated with the service provider.
+   * Authenticate an account with the service provider.
    *
    * For example:
    *
-   * if (AccountManager.isAuthenticated(AccountManager.Type.TWITTER)) {
-   *  //authenticated
-   * } else {
-   *  //failed to authenticate
-   * }
+   * var params = {
+   *   type: AccountManager.Type.TWITTER,
+   *   onSuccess: function() {
+   *
+   *   },
+   *   onFail: function() {
+   *
+   *   }
+   * };
+   *
+   * AccountManager.authenticate(params);
+   *
    *
    * If ok, saves this account info to user prefs.
    *
+   * @param params
+   */
+  AccountManager.authenticate = function(params) {
+    //TODO implements this
+  };
+
+  /**
+   * Checks if an account is authenticated with service provider or not.
+   *
    * @param type
-   * @param callback
    */
   AccountManager.isAuthenticated = function(type) {
     //TODO implements this
-  }
+  };
 
   /**
    * Checks if an account form should be displayed for user to add account base on the type.
@@ -85,7 +100,7 @@
    */
   AccountManager.canDisplayAddAccountForm = function(type) {
     //TODO implements this
-  }
+  };
 
   //expose
   window_.AccountManager = AccountManager;
