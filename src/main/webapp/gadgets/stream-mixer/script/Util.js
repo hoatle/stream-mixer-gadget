@@ -3,6 +3,7 @@
  * - Convert timestamp to pretty name
  *
  * depends on:
+ * jQuery
  * Locale.js
  */
 
@@ -114,6 +115,49 @@
     activities.sort(function(act1, act2) {
       return act2.postedTime - act1.postedTime;
     });
+  };
+
+  /**
+   * Gets activities.
+   *
+   * For example:
+   *
+   * var params = {
+   *   first: 3,
+   *   max: 25,
+   *   userId: opensocial.IdSpec.PersonId.VIEWER,
+   *   groupId: opensocial.IdSpec.GroupId.FRIENDS,
+   *   key: 'activities'
+   * };
+   *
+   * Util.getActivities(params, function(response) {
+   *    if (!response.hadError()) {
+   *      var activities = response.get('activities');
+   *    }
+   * });
+   *
+   * @param params
+   */
+  Util.getActivities = function(params, callback) {
+    if (!params) {
+      params = {};
+    }
+    if (!callback || !jQuery.isFunction(callback)) {
+      log.error('callback is not specified or not a function!');
+      return;
+    }
+    var first = params.first || 0;
+    var max = params.max || Configuration.getNumberOfActivitiesEachFetch();
+    var userId = params.userId || opensocial.IdSpec.PersonId.VIEWER;
+    var groupId = params.groupId || opensocial.IdSpec.GroupId.SELF;
+    var key = params.key || 'activities';
+    var req = opensocial.newDataRequest();
+    var opts_act = {};
+    opts_act[opensocial.DataRequest.ActivityRequestFields.FIRST] = first;
+    opts_act[opensocial.DataRequest.ActivityRequestFields.MAX] = max;
+    var idSpec = opensocial.newIdSpec({'userId': userId, 'groupId': groupId});
+    req.add(req.newFetchActivitiesRequest(idSpec, opts_act), key);
+    req.send(callback);
   };
 
   /**
