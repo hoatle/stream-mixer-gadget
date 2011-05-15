@@ -9,10 +9,51 @@
       selectedType,
       successCallback,
       failCallback,
+      viewer, viewerFriends = [],
+      viewerActivities = [], viewerFriendsActivities = [],
       unifiedActivities = [], newerUnifiedActivities = [], olderUnifiedActivities = [],
       exoActivities = [], newerExoActivities = [], olderExoActivities = [],
       twitterActivities = [], newerTwitterActivities = [], olderTwitterActivities = [],
       facebookActivities = [], newerFacebookActivities = [], olderFacebookActivities = [];
+
+  //Loads viewer, viewerFriends
+  (function() {
+    var viewerOpts = {};
+    viewerOpts[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] =
+            [opensocial.Person.Field.ID,
+             opensocial.Person.Field.NAME,
+             opensocial.Person.Field.PROFILE_URL,
+             opensocial.Person.Field.THUMBNAIL_URL
+            ];
+
+    Util.getViewer(viewerOpts, function(res) {
+      if (res.hadError()) {
+        debug.error('Failed to get viewer');
+        debug.info(res);
+        return;
+      }
+      viewer = res.get('viewer').getData();
+    });
+
+    var viewerFriendsOpts = {};
+    viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.FIRST] = 0;
+    viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.MAX] = 100;
+    viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] =
+            [opensocial.Person.Field.ID,
+              opensocial.Person.Field.NAME,
+              opensocial.Person.Field.PROFILE_URL,
+              opensocial.Person.Field.THUMBNAIL_URL
+            ];
+    Util.getViewerFriends(viewerFriendsOpts, function(res) {
+      if (res.hadError()) {
+        debug.error('Failed to get viewer friends');
+        debug.info(res);
+        return;
+      }
+      viewerFriends = res.get('viewerFriends').getData();
+      initActivities();
+    });
+  })();
 
 
   /**
@@ -63,6 +104,62 @@
     failCallback = params.onFail;
   };
 
+  function initActivities() {
+    Util.getActivities({}, function(res) {
+      //viewer activities
+      if (res.hadError()) {
+        debug.warn('Failed to init viewer activities');
+        debug.info(res);
+        return;
+      }
+      var osViewerActivities = res.get('activities').getData();
+      osViewerActivities.each(function(osActivity) {
+        var params = {
+          type: Activity.Type.EXO_PLATFORM,
+          content: osActivity.getField(opensocial.Activity.Field.TITLE),
+          displayName: viewer.getDisplayName(),
+          profileUrl: viewer.getField(opensocial.Person.Field.PROFILE_URL),
+          avatarUrl: viewer.getField(opensocial.Person.Field.THUMBNAIL_URL),
+          postedTime: osActivity.getField(opensocial.Activity.Field.POSTED_TIME)
+        };
+        var activity = new Activity(params);
+        viewerActivities.push(activity);
+      });
+      exoActivities.concat(viewerActivities);
+    });
+
+    Util.getActivities({groupId: opensocial.IdSpec.GroupId.FRIENDS}, function(res) {
+
+      function getPostedUser(id) {
+        return viewerFriends.get(id);
+      }
+
+      //viewer's friends activities
+      if (res.hadError()) {
+        debug.warn('Failed to init viewer\'s friends activities');
+        debug.info(res);
+        return;
+      }
+      var osViewerFriendsActivities = res.get('activities').getData();
+      osViewerFriendsActivities.each(function(osActivity) {
+        var postedUser = getPostedUser(osActivity.getField(opensocial.Activity.Field.ID));
+        var params = {
+          type: Activity.Type.EXO_PLATFORM,
+          content: osActivity.getField(opensocial.Activity.Field.TITLE),
+          displayName: postedUser.getDisplayName(),
+          profileUrl: postedUser.getField(opensocial.Person.Field.PROFILE_URL),
+          avatarUrl: postedUser.getField(opensocial.Person.Field.THUMBNAIL_URL),
+          postedTime: osActivity.getField(opensocial.Activity.Field.POSTED_TIME)
+        };
+        var activity = new Activity(params);
+        viewerFriendsActivities.push(activity);
+      });
+      exoActivities.concat(viewerFriendsActivities);
+    });
+
+  }
+
+
   /**
    * Gets the selected type.
    */
@@ -89,9 +186,17 @@
    */
   ActivityStream.getActivities = function(count) {
     if (selectedType === ActivityStream.Type.UNIFIED) {
+      unifiedActivities = [];
+      unifiedActivities.concat(exoActivities);
+      unifiedActivities.concat(twitterActivities);
+      Util.sortActivities(unifiedActivities);
+      return unifiedActivities;
 
     } else if (selectedType === ActivityStream.Type.EXO_PLATFORM) {
-      exoActivities = getExoActivities(count);
+      Util.sortActivities(exoActivities);
+      return exoActivities; //TODO only return ~ 20 activities/ page
+    } else if (selectedType == ActivityStream.Type.TWITTER) {
+      return twitterActivities;
     }
   };
 
@@ -103,6 +208,7 @@
    */
   ActivityStream.hasNewer = function() {
     //TODO implements this
+    return false;
   };
 
 
@@ -130,6 +236,7 @@
    */
   ActivityStream.hasOlder = function() {
     //TODO implements this
+    return false;
   };
 
   /**
@@ -149,21 +256,6 @@
    * @param count
    */
   ActivityStream.getNewer = function(count) {
-    //TODO implements this
-  };
-
-
-
-  function getExoActivities(count) {
-    var count = count || 20;
-
-  };
-
-  function putActivity(newActivity) {
-    //TODO implements this
-  };
-
-  function removeActivity(existingActivity) {
     //TODO implements this
   };
 
