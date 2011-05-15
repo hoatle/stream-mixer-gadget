@@ -54,8 +54,18 @@
 													'password': passWord
 													}				
 			)
-			$("#LoginForm").hide();
-			$("#ActivityContent").show();
+			AccountManager.authenticate(AccountManager.Type.TWITTER,{
+				'onSuccess': function() {
+					$("#LoginForm").hide();
+					$("#ActivityContent").show();					
+				},
+				'onFail': function() {
+					$("#dialog").dialog();
+					$("#LoginForm").hide();
+					$("#ActivityContent").show();
+				}
+			})
+
 		})
 //		$("#LoginForm").show();
 //		$("#ActivityContent").hide();
