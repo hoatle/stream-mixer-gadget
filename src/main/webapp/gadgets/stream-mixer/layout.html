@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <title>Title</title>
+  </head>
+
+    <link rel="stylesheet" type="text/css" href="style/jquery-ui-1.8.12.custom.css" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <body>
+    
+    <script type="text/javascript">
+    var data = [{
+        "type" : "twitter",
+        "displayName" : "displayname",
+        "content" : "Next, click on the application ID link. This will take you to the application'sdashboard, where you can manage and inspect the application. You can view theapplications logs, browse its data, control access to the application, and look at itsusage statistics. ",
+        "appIcon" : "style/images/twitter.png",
+        "avatar" : "/home/phuonglm/Pictures/smile/Nam/4ce649b302000x14cc3.gif",
+        "posted" : new Date().getTime(),
+        "prettyTime" : "010101"
+      }, {
+        "type" : "exo",
+        "displayName" : "phuonglm",
+        "appIcon" : "style/images/exo.png",
+        "content" : "Next, click on the application ID link. This will take you to the application'sdashboard, where you can manage and inspect the application. You can view theapplications logs, browse its data, control access to the application, and look at itsusage statistics. ",
+        "avatar" : "/home/phuonglm/Pictures/smile/Nam/4ce649b302000x14cc3.gif",
+        "posted" : new Date().getTime(),
+        "prettyTime" : "010101"
+      }];
+    </script>
+    <script type="text/javascript" src="script/debug.js"></script>
+    <!-- Dev Mode -->
+    <script type="text/javascript" src="script/jquery-1.6.1.js"></script>
+    <script type="text/javascript" src="script/jquery-ui-1.18.12.js"></script>
+    <script type="text/javascript" src="script/Locale.js"></script>
+    <script type="text/javascript" src="script/AccountManager.js"></script>
+    <script type="text/javascript" src="script/Activity.js"></script>
+    <script type="text/javascript" src="script/ActivityComposer.js"></script>
+    <script type="text/javascript" src="script/ActivityStream.js"></script>
+    <script type="text/javascript" src="script/StreamMixer.js"></script>
+    <script type="text/javascript" src="script/Util.js"></script>
+    <!-- Prod Mode -->
+    <!--
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="script/merged.min.js"></script>
+    -->
+    
+    
+    <div id="Activitytemplate" class="Activity" style="display:none;">
+        <img id="avatarIcon" class="avatarIcon"/>
+        <div id="header">
+          <img id="activityIcon" class="activityIcon"/>
+          <span id="displayName" class="displayName"></span>
+          (<span id="postedDay" class="postedDay"></span>)
+        </div>
+        <div id="content" class="content"></div>
+      </div>
+    </div>
+    
+    
+    <div id="LoginForm" class="LoginForm" style="display: none;">
+        <img id="socialLogo" class="socialNetworkLogo"/>
+        <br/>
+        <label for="userName">_MSG_username__:</label><input id="userName"></input>
+        <br/>
+        <label for="passWord">_MSG_password__:</label><input id="passWord"></input>
+        <br/>
+        <label>&nbsp;</label>
+        <input type="button" value="_MSG_login__"></input>
+    </div>
+    <br/>
+    <div id="ActivityContent" style="display: none;">
+	    <div id="statusForm">
+	        <input id="statusTxt" class="statusTxt"/>
+	        <input id="UpdateStatusButton" class="UpdateStatusButton" type="button" value="Post"/>
+	        <div>
+	          <label for="postToTwitter">_MSG_postTo__ Twitter:</label>
+	          <input id="postToTwitter" type="checkbox"/>
+	        </div>
+	    </div>
+	    <div id="StreamSelector">	       
+	       <label for="StreamSelectTwitter">Twitter</label><input id="StreamSelectTwitter" type="checkbox" checked="checked"/>
+	       <label for="StreamSelecteXo">eXo</label><input id="StreamSelecteXo" type="checkbox" checked="checked"/>
+	    </div>
+	    <div id="Activities">
+	        
+	    </div>
+    </div>
+  </body>
+</html>

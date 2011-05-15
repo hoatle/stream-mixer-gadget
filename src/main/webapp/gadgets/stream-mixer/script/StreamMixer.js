@@ -4,7 +4,7 @@
 (function($) {
   $(document).ready(function() {
 		$("#ActivityContent").show();
-		$("#Activities").show();
+
 		var activityStream = new ActivityStream();
 		
 //		Util.renderActivity(activityStream.getActivities());
@@ -19,14 +19,45 @@
 				}
 			}
 		};
-		var socialAvailable = ["twitter"];
+
 		var activityComposer = new ActivityComposer(activityComposerParam);
-		$.each(socialAvailable, function(index,value){
-			if(AccountManager.canDisplayAddAccountForm("twitter")){
-				$("#LoginForm > div > #socialLogo").attr("src","style/images/"+value+"_big.jpeg");
+		$.each(AccountManager.Type, function(index,value){
+			if(AccountManager.canDisplayAddAccountForm(value)){
+				$("#LoginForm > #socialLogo").attr("src","style/images/"+value+"_big.jpeg");
+				$("#LoginForm > #socialLogo").attr("title","value");
 				$("#ActivityContent").hide();
 				$("#LoginForm").show();
 			}
 		});
+		
+		$("#postToTwitter").change(function(){
+			if($(this).attr('checked')){
+				if( (AccountManager.getAccount("twitter")==undefined) ||  (!AccountManager.isAuthenticated("twitter"))){
+					$(this).attr('checked',false);
+					$("#LoginForm > #socialLogo").attr("src","style/images/twitter_big.jpeg");
+					$("#LoginForm > #socialLogo").attr("title","twitter");
+					$("#LoginForm").show();
+					$("#ActivityContent").hide();
+				}
+			}
+		});
+		
+		$("#LoginForm input[type=button]").click(function(){
+			var parent = $(this).parent();
+			var accountType = $("img", parent).attr("title");
+			var userName = $("#userName", parent).val();
+			$("#userName", parent).val("");
+			var passWord = $("#passWord", parent).val();
+			$("#passWord", parent).val("");
+			AccountManager.addAccount(accountType,{ 
+													'username': userName,
+													'password': passWord
+													}				
+			)
+			$("#LoginForm").hide();
+			$("#ActivityContent").show();
+		})
+//		$("#LoginForm").show();
+//		$("#ActivityContent").hide();
   });
 })(jQuery);
