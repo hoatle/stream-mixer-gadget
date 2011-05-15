@@ -20,7 +20,7 @@
    *
    */
   function ActivityStream() {
-  }
+  };
 
   //Enum constants for activity stream type
   ActivityStream.Type = {
@@ -29,9 +29,11 @@
     TWITTER      : 'twitter',
     FACEBOOK     : 'facebook',
     LINKEDIN     : 'linkedin'
-  }
+  };
 
   /**
+   * Configures the the activity stream to work.
+   *
    * For example:
    *
    * var params = {
@@ -48,9 +50,14 @@
    *   }
    * };
    *
+   * ActivityStream.configure(params);
+   *
    * @param params
    */
   ActivityStream.configure = function(params) {
+    if (!params) {
+      params = {};
+    }
     selectedType = params.selectedType || ActivityStream.Type.UNIFIED;
     successCallback = params.onSuccess;
     failCallback = params.onFail;
@@ -96,7 +103,24 @@
    */
   ActivityStream.hasNewer = function() {
     //TODO implements this
-  }
+  };
+
+
+  /**
+   * Adds a newer handle to be called when newer activities are created.
+   *
+   * For example:
+   *
+   * ActivityStream.addNewerHandler(function(activities) {
+   *  //
+   * });
+   *
+   *
+   * @param callback
+   */
+  ActivityStream.onNewerHandler = function(callback) {
+    //TODO implements this
+  };
 
   /**
    * Returns number of older activities on the selected stream.
@@ -106,7 +130,7 @@
    */
   ActivityStream.hasOlder = function() {
     //TODO implements this
-  }
+  };
 
   /**
    * Gets older activities based on a specified activity, the count is optional. If no count is specified,
