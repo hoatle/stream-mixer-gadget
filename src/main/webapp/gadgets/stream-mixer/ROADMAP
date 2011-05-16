@@ -9,11 +9,16 @@ Stream Mixer Gadget Road Map
 - Allows to posts activity from this gadget to twitter by basic authentication.
 - Some views for activities: unified, @connections, @exo, @twitter.
 
-============================= 1.0.0-alpha2 (?) =================================
+============================= 1.0.0-alpha3 (?) =================================
 - Realtime support
 - jQuery UI for better UI
 - Add more tab views for activities: @connections, @me
 
+
+============================= 1.0.0-alpha2 (May 16, 2011)========================
+- Fix default avatar problem
+- Enhance UI a bit
+- Fix problems when running on eXo Intranet.
 
 ============================= 1.0.0-alpha1 (May 16, 2011) =======================
 - Display unified activities of a user (user and his connections's activities in a unified stream)
