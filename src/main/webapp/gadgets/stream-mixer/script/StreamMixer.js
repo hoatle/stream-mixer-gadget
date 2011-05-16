@@ -7,15 +7,15 @@
 
 		var activityStream = new ActivityStream();
 		
-//		Util.renderActivity(activityStream.getActivities());
-		Util.renderActivity(data);
+		Util.renderActivity(activityStream.getActivities(10));
 		var activityComposerParam = { 
 			componentIds : {"textBoxId" : "statusTxt" , "shareButtonId":"UpdateStatusButton","twitterCheckBoxId": "postToTwitter"},
 			callback : {
 				onSuccess: function(){
-					
+					//TODO process on post Success
 				},
-				onSuccess: function(){
+				onFail : function(){
+					//TODO process on post Success
 				}
 			}
 		};
@@ -55,18 +55,39 @@
 													}				
 			)
 			AccountManager.authenticate(AccountManager.Type.TWITTER,{
-				'onSuccess': function() {
+				onSuccess: function() {
 					$("#LoginForm").hide();
 					$("#ActivityContent").show();					
 				},
-				'onFail': function() {
+				onFail: function() {
 					$("#dialog").dialog();
 					$("#LoginForm").hide();
 					$("#ActivityContent").show();
 				}
 			})
-
+			
 		})
+		var statusInput = $("#statusTxt");
+		$(statusInput).css("color","#CCCCCC");		
+		$(statusInput).focus(function(){
+			if($(this).css("color")=="rgb(204, 204, 204)"){
+				$(this).val("");
+				$(this).css("color","black");
+			}
+		});
+		$(statusInput).blur(function(){
+			if($(this).val()==""){
+				$(this).val("Default Text");
+				$(this).css("color","#CCCCCC");
+			}
+		});
+		
+		$("#moreButton").click(function(){
+		   if(activityStream.hasNewer()){
+			   Util.renderActivity(activityStream.getActivities(10));
+		   }
+		});
+		
 //		$("#LoginForm").show();
 //		$("#ActivityContent").hide();
   });
