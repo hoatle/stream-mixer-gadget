@@ -84,18 +84,6 @@
       <br/>
 
       <div id="ActivityContent" style="display: none;">
-        <div id="statusForm">
-          <input id="statusTxt" class="statusTxt"/>
-          <input id="UpdateStatusButton" class="UpdateStatusButton" type="button" value="Post"/>
-          <div>
-            <label for="postToTwitter">_MSG_postTo__ Twitter:</label>
-            <input id="postToTwitter" type="checkbox"/>
-          </div>
-        </div>
-        <div id="StreamSelector">
-          <label for="StreamSelectTwitter">Twitter</label><input id="StreamSelectTwitter" type="checkbox" checked="checked"/>
-          <label for="StreamSelecteXo">eXo</label><input id="StreamSelecteXo" type="checkbox" checked="checked"/>
-        </div>
         <div id="Activities">
 
         </div>

@@ -223,7 +223,7 @@
     var newTemplate = $("#Activitytemplate").clone();
 
     newTemplate.attr("id", "Activity");
-    $("#avatarIcon", newTemplate).attr("src", activity.avatar);
+    $("#avatarIcon", newTemplate).attr("src", activity.avatarUrl);
     $("#activityIcon", newTemplate).attr("src", activity.appIcon);
     $("#displayName", newTemplate).html(activity.displayName);
     $("#content", newTemplate).html(activity.content);

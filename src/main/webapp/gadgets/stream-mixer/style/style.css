@@ -72,6 +72,10 @@ br {
   text-align: right;
   width: 90%;
 }
+#moreButton {
+  width: 90%;
+  height: 25px;
+}
 
 .ui-progressbar-value {
   background-image: url(images/pbar-ani.gif);
