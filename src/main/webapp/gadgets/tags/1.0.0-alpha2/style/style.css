@@ -1,0 +1,104 @@
+
+.Activity {
+	float: left;
+	position: relative;
+	margin: 2px;
+	padding: 0;
+	font: 11px;
+	height: auto;
+	width: 100%;
+	background: #FAFAE9;
+}
+
+.avatarIcon {
+	float: left;
+	margin: 2px 5px 2px 2px;
+	border: 1px solid gray;
+	padding: 0;
+	width: 40px;
+	height: 40px;
+}
+
+.contentContainer {
+	width: 90%;
+	background: #FAFAE9;
+}
+
+.activityIcon {
+	float: left;
+	height: 16px;
+	margin: 2px;
+}
+
+.statusTxt {
+	width: 80%;
+	font-size: 14px;
+}
+
+.UpdateStatusButton {
+	width: 10%;
+	height: 25px;
+}
+
+.LoginForm label,.Loginform input {
+	float: left;
+	margin-bottom: 10px;
+}
+
+.LoginForm label {
+	width: 40%;
+}
+
+.Loginform input {
+	width: 30%;
+}
+
+.LoginForm img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto
+}
+
+.LoginForm label {
+	text-align: right;
+	padding-right: 20px;
+}
+
+br {
+	clear: left;
+}
+
+.postedDay {
+  font-size: 11px;
+  font-style: italic;
+}
+
+#StreamSelector {
+  text-align: right;
+  width: 90%;
+}
+#moreButton {
+  width: 90%;
+  height: 25px;
+}
+
+#Activities {
+  height: 500px;
+  margin: 0;
+  overflow: scroll;
+  padding: 0;
+  position: relative;
+}
+
+#Activity a, a:link, a:active, a:hover, a:visited {
+  color: gray;
+  font-size: 14px;
+}
+
+.ui-progressbar {
+    height: 1em;
+}
+
+.ui-progressbar-value {
+  background-image: url(images/pbar-ani.gif);
+}

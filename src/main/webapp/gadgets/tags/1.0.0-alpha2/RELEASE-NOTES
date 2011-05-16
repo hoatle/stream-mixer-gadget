@@ -1,0 +1,5 @@
+Stream Mixer Gadget Release Notes for 1.0.0-alpha2
+
+- Fix default avatar problem
+- Enhance UI a bit, add loading bar
+- Fix problems when running on eXo Intranet.
