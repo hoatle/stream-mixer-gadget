@@ -100,6 +100,7 @@
    */
   AccountManager.canDisplayAddAccountForm = function(type) {
     //TODO implements this
+    return false;
   };
 
   //expose
