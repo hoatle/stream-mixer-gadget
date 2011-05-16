@@ -1,12 +1,4 @@
-Stream Mixer Gadget Release Notes for 1.0.0
+Stream Mixer Gadget Release Notes for 1.0.0-alpha1
 
-- Gets and mixes activites from eXo Platform and Twitter for better displaying.
-- Allows to posts activity from this gadget to twitter by basic authentication.
+- Display unified activities of a user (user and his connections's activities in a unified stream)
 - Multiple-languages support (En, Fr, Vi), more will be added.
-- Some views for activiites: @unified, @connections, @exo, @twitter.
-- Realtime support.
-
-* Limitation:
-- Currently supports eXo Platform and Twitter only.
-- Use basic authentication for Twitter, should use OAuth (due to eXo Platform's limitation for registering
-consumer keys).

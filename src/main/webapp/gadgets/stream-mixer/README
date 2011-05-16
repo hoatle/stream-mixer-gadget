@@ -1,6 +1,15 @@
 Stream Mixer Gadget (https://github.com/hoatle/stream-mixer-gadget/tree/master/src/main/webapp/gadgets)
   Activity Stream Mixer for eXo Platform, Twitter, Facebook, LinkedIn...
 
+Description:
+- Gets and mixes activities from eXo Platform, Twitter, Facebook, LinkedIn for better displaying and tracking.
+- Allows to posts activity from this gadget to twitter by basic authentication.
+- Multiple-languages support (En, Fr, Vi), more will be added.
+- Some views for activities: @unified, @connections, @exo, @twitter.
+- Realtime support.
+
+Please refer to RELEASE-NOTES for more feature details.
+
 Developers:
 - Hoat Le (http://hoatle.net)
 - PhuongLM  (http://phuonglm.net)
@@ -26,6 +35,11 @@ The release package includes:
     |-- style.css
     |-- images
         |-- [*.png,*.jpeg]
+|-- screenshots
+
+
+
+
 
 
 
