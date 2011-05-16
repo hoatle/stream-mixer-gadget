@@ -74,7 +74,7 @@
           $("#ActivityContent").show();
         }
       })
-
+      gadgets.window.adjustHeight();
     })
   });
 })(jQuery);
