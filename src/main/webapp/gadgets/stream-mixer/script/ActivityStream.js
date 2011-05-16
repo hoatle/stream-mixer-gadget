@@ -144,9 +144,11 @@
                   'social-resources/skin/ShareImages/activity/AvatarPeople.gif';
           debug.info('default avatarUrl: ' + avatarUrl);
         }
+        var osActivityTitle = osActivity.getField(opensocial.Activity.Field.TITLE).replace(/&#60;/g,
+                '<').replace(/&#62;/g, '>').replace(/&#34;/g, '"');
         var params = {
           type: Activity.Type.EXO_PLATFORM,
-          content: unescape(osActivity.getField(opensocial.Activity.Field.TITLE)),
+          content: unescape(osActivityTitle),
           displayName: viewer.getDisplayName(),
           profileUrl: viewer.getField(opensocial.Person.Field.PROFILE_URL),
           avatarUrl: viewer.getField(opensocial.Person.Field.THUMBNAIL_URL),
@@ -186,9 +188,11 @@
           }
           debug.info('postedUser:');
           debug.debug(postedUser);
+          var osActivityTitle = osActivity.getField(opensocial.Activity.Field.TITLE).replace(/&#60;/g,
+                  '<').replace(/&#62;/g, '>').replace(/&#34;/g, '"');
           var params = {
             type: Activity.Type.EXO_PLATFORM,
-            content: unescape(osActivity.getField(opensocial.Activity.Field.TITLE)),
+            content: unescape(osActivityTitle),
             displayName: postedUser.getDisplayName(),
             profileUrl: postedUser.getField(opensocial.Person.Field.PROFILE_URL),
             avatarUrl: postedUser.getField(opensocial.Person.Field.THUMBNAIL_URL),
