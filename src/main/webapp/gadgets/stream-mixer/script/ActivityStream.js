@@ -138,8 +138,11 @@
       var osViewerActivities = res.get('activities').getData();
       osViewerActivities.each(function(osActivity) {
         var avatarUrl = viewer.getField(opensocial.Person.Field.THUMBNAIL_URL);
+        //Tricky, Social's bug
         if (!avatarUrl) {
-          avatarUrl = ''
+          avatarUrl = Configuration.portalEnvironment.host + '/' +
+                  'social-resources/skin/ShareImages/activity/AvatarPeople.gif';
+          debug.info('default avatarUrl: ' + avatarUrl);
         }
         var params = {
           type: Activity.Type.EXO_PLATFORM,
@@ -174,6 +177,13 @@
         var osViewerFriendsActivities = res.get('activities').getData();
         osViewerFriendsActivities.each(function(osActivity) {
           var postedUser = getPostedUser(osActivity.getField(opensocial.Activity.Field.USER_ID));
+          var avatarUrl = postedUser.getField(opensocial.Person.Field.THUMBNAIL_URL);
+          //Tricky, Social's bug
+          if (!avatarUrl) {
+            avatarUrl = Configuration.portalEnvironment.host + '/' +
+                    'social-resources/skin/ShareImages/activity/AvatarPeople.gif';
+            debug.info('default avatarUrl: ' + avatarUrl);
+          }
           debug.info('postedUser:');
           debug.debug(postedUser);
           var params = {
