@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2003-2011 eXo Platform SAS.
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Affero General Public License
+    as published by the Free Software Foundation; either version 3
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, see<http://www.gnu.org/licenses/>.
+
+-->
+<Module>
+  <ModulePrefs  title="Stream Mixer Gadget Test Suite"
+                description="Stream Mixer: eXo Platform, Twitter, Facebook, LinkedIn..."
+                author="Hoat Le, Ly Minh Phuong"
+                author_email="hoatlevan@gmail.com"
+                author_affiliation="eXo Platform">
+    <Locale messages="locale/ALL_ALL.xml" />
+    <Locale lang="en" messages="locale/en_ALL.xml" />
+    <Locale lang="fr" messages="locale/fr_ALL.xml" />
+    <Locale lang="vi" messages="locale/vi_ALL.xml" />
+    <Require feature="opensocial-0.8" />
+    <Require feature="dynamic-height" />
+    <Require feature="settitle" />
+    <Require feature="views" />
+    <Require feature="minimessage" />
+  </ModulePrefs>
+  <Content type="html" view="default, home, profile, canvas">
+  <![CDATA[
+    <link rel="stylesheet" type="text/css" href="style/qunit.css" />
+    <link rel="stylesheet" type="text/css" href="style/jquery-ui-1.8.12.custom.css" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <script type="text/javascript" src="script/debug.js"></script>
+
+    <!-- Dev Mode -->
+    <script type="text/javascript" src="script/jquery-1.6.1.js"></script>
+    <script type="text/javascript" src="script/jquery-ui-1.18.12.js"></script>
+    <script type="text/javascript" src="script/qunit.js"></script>
+
+    <script type="text/javascript" src="script/Configuration.js"></script>
+    <script type="text/javascript" src="script/Locale.js"></script>
+    <script type="text/javascript" src="script/Util.js"></script>
+    <script type="text/javascript" src="script/Activity.js"></script>
+    <script type="text/javascript" src="script/ActivityStream.js"></script>
+
+    <!-- Prod Mode -->
+    <!--
+    <script type="text/javascript" src="script/jquery-1.16.1.min.js"></script>
+    <script type="text/javascript" src="script/jquery-ui-1.18.12.min.js"></script>
+    <script type="text/javascript" src="script/merged.min.js"></script>
+    -->
+
+    <!-- Test suite -->
+    <script type="text/javascript" src="script-test/ConfigurationTest.js"></script>
+    <script type="text/javascript" src="script-test/LocaleTest.js"></script>
+    <script type="text/javascript" src="script-test/ActivityTest.js"></script>
+    <script type="text/javascript" src="script-test/ActivityStreamTest.js"></script>
+    <script type="text/javascript" src="script-test/UtilTest.js"></script>
+
+
+    <h2 id="qunit-header">Stream Mixer Gadget Test Suite</h2>
+
+    <h2 id="qunit-banner"></h2>
+
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture"></div>
+  ]]>
+  </Content>
+</Module>
