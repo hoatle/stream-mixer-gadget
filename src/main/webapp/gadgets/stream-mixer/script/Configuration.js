@@ -52,6 +52,17 @@
     }
   };
 
+  /**
+   * Portal Environment.
+   */
+  Configuration.portalEnvironment = {
+    portalName: null,
+    host: null,
+    restContextName: null
+  };
+
+
+
 
   //exposes
   window_.Configuration = Configuration;

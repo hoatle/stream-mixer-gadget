@@ -1,6 +1,9 @@
 /**
  * The activity stream to put/get activities, load more, load newer.
  *
+ * depends:
+ * Configuration.js
+ *
  */
 
 
@@ -24,7 +27,10 @@
             [opensocial.Person.Field.ID,
               opensocial.Person.Field.NAME,
               opensocial.Person.Field.PROFILE_URL,
-              opensocial.Person.Field.THUMBNAIL_URL
+              opensocial.Person.Field.THUMBNAIL_URL,
+              "portalName", //TODO hoatle tricky, need exo-environment feature
+              "restContext",
+              "host"
             ];
 
     Util.getViewer(viewerOpts, function(res) {
@@ -34,6 +40,15 @@
         return;
       }
       viewer = res.get('viewer').getData();
+
+      Configuration.portalEnvironment = {
+        'portalName': viewer.getField('portalName'),
+        'restContextName': viewer.getField('restContextName'),
+        'host': viewer.getField('hostName')
+      };
+
+      debug.info('Configuration.portalEnvironment:');
+      debug.debug(Configuration.portalEnvironment);
 
       var viewerFriendsOpts = {};
       viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.FIRST] = 0;
@@ -122,6 +137,10 @@
       }
       var osViewerActivities = res.get('activities').getData();
       osViewerActivities.each(function(osActivity) {
+        var avatarUrl = viewer.getField(opensocial.Person.Field.THUMBNAIL_URL);
+        if (!avatarUrl) {
+          avatarUrl = ''
+        }
         var params = {
           type: Activity.Type.EXO_PLATFORM,
           content: osActivity.getField(opensocial.Activity.Field.TITLE),
