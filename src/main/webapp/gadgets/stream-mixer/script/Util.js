@@ -225,9 +225,10 @@
     newTemplate.attr("id", "Activity");
     $("#avatarIcon", newTemplate).attr("src", activity.avatarUrl);
     $("#activityIcon", newTemplate).attr("src", activity.appIcon);
+    $("#userProfileUrl", newTemplate).attr('href', activity.profileUrl);
     $("#displayName", newTemplate).html(activity.displayName);
     $("#content", newTemplate).html(activity.content);
-    $("#postedDay", newTemplate).html(activity.prettyTime);
+    $("#postedDay", newTemplate).html('( ' + activity.prettyTime + ' )');
 
     $("#Activities").append(newTemplate);
     newTemplate.show();

@@ -1,19 +1,19 @@
+
 .Activity {
 	float: left;
 	position: relative;
 	margin: 2px;
 	padding: 0;
-	font: 12px;
+	font: 11px;
 	height: auto;
-	width: 90%;
+	width: 100%;
 	background: #FAFAE9;
 }
 
 .avatarIcon {
 	float: left;
 	margin: 2px 5px 2px 2px;
-	border: 1px;
-	border-style: solid;
+	border: 1px solid gray;
 	padding: 0;
 	width: 40px;
 	height: 40px;
@@ -68,6 +68,11 @@ br {
 	clear: left;
 }
 
+.postedDay {
+  font-size: 11px;
+  font-style: italic;
+}
+
 #StreamSelector {
   text-align: right;
   width: 90%;
@@ -75,6 +80,18 @@ br {
 #moreButton {
   width: 90%;
   height: 25px;
+}
+
+#Activitites {
+  height: 500px;
+  margin: 0;
+  overflow: scroll;
+  padding: 0;
+  position: relative;
+}
+
+#Activity a, a:link, a:active, a:hover, a:visited {
+  color: gray;
 }
 
 .ui-progressbar-value {

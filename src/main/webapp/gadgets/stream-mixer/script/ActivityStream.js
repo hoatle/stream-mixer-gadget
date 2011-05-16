@@ -180,8 +180,9 @@
         osViewerFriendsActivities.each(function(osActivity) {
           var postedUser = getPostedUser(osActivity.getField(opensocial.Activity.Field.USER_ID));
           if (!postedUser) {
-            debug.error('Failed to get user with userId: ' + osActivity.getField(opensocial.Activity.Field.USER_ID));
+            debug.warn('Failed to get user with userId: ' + osActivity.getField(opensocial.Activity.Field.USER_ID));
             debug.debug(osActivity);
+            return;
           }
           var avatarUrl = postedUser.getField(opensocial.Person.Field.THUMBNAIL_URL);
           //Tricky, Social's bug
@@ -202,8 +203,8 @@
             avatarUrl: avatarUrl,
             postedTime: osActivity.getField(opensocial.Activity.Field.POSTED_TIME)
           };
-          debug.info('osViewerFriendsActivities:');
-          debug.debug(osViewerFriendsActivities);
+          //debug.info('osViewerFriendsActivities:');
+          //debug.debug(osViewerFriendsActivities);
           var activity = new Activity(params);
           viewerFriendsActivities.push(activity);
         });
