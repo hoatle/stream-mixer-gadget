@@ -1,6 +1,9 @@
 /**
  * The activity stream to put/get activities, load more, load newer.
  *
+ * depends:
+ * Configuration.js
+ *
  */
 
 
@@ -24,7 +27,10 @@
             [opensocial.Person.Field.ID,
               opensocial.Person.Field.NAME,
               opensocial.Person.Field.PROFILE_URL,
-              opensocial.Person.Field.THUMBNAIL_URL
+              opensocial.Person.Field.THUMBNAIL_URL,
+              "portalName", //TODO hoatle tricky, need exo-environment feature
+              "restContext",
+              "host"
             ];
 
     Util.getViewer(viewerOpts, function(res) {
@@ -34,6 +40,15 @@
         return;
       }
       viewer = res.get('viewer').getData();
+
+      Configuration.portalEnvironment = {
+        'portalName': viewer.getField('portalName'),
+        'restContextName': viewer.getField('restContextName'),
+        'host': viewer.getField('hostName')
+      };
+
+      debug.info('Configuration.portalEnvironment:');
+      debug.debug(Configuration.portalEnvironment);
 
       var viewerFriendsOpts = {};
       viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.FIRST] = 0;
@@ -122,6 +137,13 @@
       }
       var osViewerActivities = res.get('activities').getData();
       osViewerActivities.each(function(osActivity) {
+        var avatarUrl = viewer.getField(opensocial.Person.Field.THUMBNAIL_URL);
+        //Tricky, Social's bug
+        if (!avatarUrl) {
+          avatarUrl = Configuration.portalEnvironment.host + '/' +
+                  'social-resources/skin/ShareImages/activity/AvatarPeople.gif';
+          debug.info('default avatarUrl: ' + avatarUrl);
+        }
         var params = {
           type: Activity.Type.EXO_PLATFORM,
           content: osActivity.getField(opensocial.Activity.Field.TITLE),
@@ -155,6 +177,13 @@
         var osViewerFriendsActivities = res.get('activities').getData();
         osViewerFriendsActivities.each(function(osActivity) {
           var postedUser = getPostedUser(osActivity.getField(opensocial.Activity.Field.USER_ID));
+          var avatarUrl = postedUser.getField(opensocial.Person.Field.THUMBNAIL_URL);
+          //Tricky, Social's bug
+          if (!avatarUrl) {
+            avatarUrl = Configuration.portalEnvironment.host + '/' +
+                    'social-resources/skin/ShareImages/activity/AvatarPeople.gif';
+            debug.info('default avatarUrl: ' + avatarUrl);
+          }
           debug.info('postedUser:');
           debug.debug(postedUser);
           var params = {
