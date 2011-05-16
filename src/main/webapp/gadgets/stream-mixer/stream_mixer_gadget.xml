@@ -52,7 +52,7 @@
     <script type="text/javascript" src="script/StreamMixer.js"></script>
     -->
     <!-- Prod Mode -->
-    <script type="text/javascript" src="script/jquery-1.16.1.min.js"></script>
+    <script type="text/javascript" src="script/jquery-1.6.1.min.js"></script>
     <script type="text/javascript" src="script/jquery-ui-1.18.12.min.js"></script>
     <script type="text/javascript" src="script/merged.min.js"></script>
     <div id="StreamMixer">
