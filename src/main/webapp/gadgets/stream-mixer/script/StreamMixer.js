@@ -5,11 +5,19 @@
   $(document).ready(function() {
 		$("#ActivityContent").show();
 
-		var activityStream = new ActivityStream();
-		
-//		Util.renderActivity(activityStream.getActivities());
-		Util.renderActivity(data);
-		var activityComposerParam = { 
+    ActivityStream.configure({
+      selectedType: ActivityStream.Type.EXO_PLATFORM,
+      onSuccess: function() {
+        debug.info('onSuccess with activities:');
+        debug.info(ActivityStream.getActivities());
+        Util.renderActivity(ActivityStream.getActivities());
+      },
+      onFail: function(msg) {
+        debug.error(msg);
+      }
+    });
+
+		var activityComposerParam = {
 			componentIds : {"textBoxId" : "statusTxt" , "shareButtonId":"UpdateStatusButton","twitterCheckBoxId": "postToTwitter"},
 			callback : {
 				onSuccess: function(){
@@ -56,7 +64,7 @@
 			)
 			$("#LoginForm").hide();
 			$("#ActivityContent").show();
-		})
+		});
 //		$("#LoginForm").show();
 //		$("#ActivityContent").hide();
   });
