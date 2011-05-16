@@ -1,6 +1,3 @@
-body{
-	background: #A2D6FF;
-}
 .Activity {
 	float: left;
 	position: relative;
@@ -35,9 +32,7 @@ body{
 
 .statusTxt {
 	width: 80%;
-	font-size
-	,
-	14px;
+	font-size: 14px;
 }
 
 .UpdateStatusButton {

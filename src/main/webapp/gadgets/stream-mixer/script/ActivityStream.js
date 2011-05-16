@@ -4,7 +4,7 @@
  */
 
 
-(function() {
+(function($) {
   var window_ = this,
       selectedType,
       successCallback,
@@ -17,13 +17,14 @@
       facebookActivities = [], newerFacebookActivities = [], olderFacebookActivities = [];
 
   //Loads viewer, viewerFriends
-  (function() {
+  function initProfiles() {
+    debug.debug('ActivityStream#initProfiles()');
     var viewerOpts = {};
     viewerOpts[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] =
             [opensocial.Person.Field.ID,
-             opensocial.Person.Field.NAME,
-             opensocial.Person.Field.PROFILE_URL,
-             opensocial.Person.Field.THUMBNAIL_URL
+              opensocial.Person.Field.NAME,
+              opensocial.Person.Field.PROFILE_URL,
+              opensocial.Person.Field.THUMBNAIL_URL
             ];
 
     Util.getViewer(viewerOpts, function(res) {
@@ -33,27 +34,29 @@
         return;
       }
       viewer = res.get('viewer').getData();
-    });
 
-    var viewerFriendsOpts = {};
-    viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.FIRST] = 0;
-    viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.MAX] = 100;
-    viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] =
-            [opensocial.Person.Field.ID,
-              opensocial.Person.Field.NAME,
-              opensocial.Person.Field.PROFILE_URL,
-              opensocial.Person.Field.THUMBNAIL_URL
-            ];
-    Util.getViewerFriends(viewerFriendsOpts, function(res) {
-      if (res.hadError()) {
-        debug.error('Failed to get viewer friends');
-        debug.info(res);
-        return;
-      }
-      viewerFriends = res.get('viewerFriends').getData();
-      initActivities();
+      var viewerFriendsOpts = {};
+      viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.FIRST] = 0;
+      viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.MAX] = 100;
+      viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] =
+              [opensocial.Person.Field.ID,
+                opensocial.Person.Field.NAME,
+                opensocial.Person.Field.PROFILE_URL,
+                opensocial.Person.Field.THUMBNAIL_URL
+              ];
+      Util.getViewerFriends(viewerFriendsOpts, function(res) {
+        if (res.hadError()) {
+          debug.error('Failed to get viewer friends');
+          debug.info(res);
+          return;
+        }
+        viewerFriends = res.get('viewerFriends').getData();
+        debug.info('viewerFriends:');
+        debug.debug(viewerFriends);
+        initActivities();
+      });
     });
-  })();
+  }
 
 
   /**
@@ -69,7 +72,9 @@
     EXO_PLATFORM : 'exo',
     TWITTER      : 'twitter',
     FACEBOOK     : 'facebook',
-    LINKEDIN     : 'linkedin'
+    LINKEDIN     : 'linkedin',
+    CONNECTIONS  : 'connections',
+    ME           : 'me'
   };
 
   /**
@@ -96,15 +101,18 @@
    * @param params
    */
   ActivityStream.configure = function(params) {
+    debug.debug('ActiivtyStream#configure');
     if (!params) {
       params = {};
     }
     selectedType = params.selectedType || ActivityStream.Type.UNIFIED;
     successCallback = params.onSuccess;
     failCallback = params.onFail;
+    initProfiles();
   };
 
   function initActivities() {
+    debug.debug('ActivityStream#initActivities()');
     Util.getActivities({}, function(res) {
       //viewer activities
       if (res.hadError()) {
@@ -122,39 +130,51 @@
           avatarUrl: viewer.getField(opensocial.Person.Field.THUMBNAIL_URL),
           postedTime: osActivity.getField(opensocial.Activity.Field.POSTED_TIME)
         };
+        debug.info('osViewerActivities:');
+        debug.debug(osViewerActivities);
         var activity = new Activity(params);
         viewerActivities.push(activity);
       });
-      exoActivities.concat(viewerActivities);
-    });
+      debug.info('viewerActivities:');
+      debug.debug(viewerActivities);
+      $.merge(exoActivities, viewerActivities);
+      debug.info('exoActivities:');
+      debug.debug(exoActivities);
+      Util.getActivities({groupId: opensocial.IdSpec.GroupId.FRIENDS}, function(res) {
 
-    Util.getActivities({groupId: opensocial.IdSpec.GroupId.FRIENDS}, function(res) {
+        function getPostedUser(id) {
+          return viewerFriends.getById(id);
+        }
 
-      function getPostedUser(id) {
-        return viewerFriends.get(id);
-      }
-
-      //viewer's friends activities
-      if (res.hadError()) {
-        debug.warn('Failed to init viewer\'s friends activities');
-        debug.info(res);
-        return;
-      }
-      var osViewerFriendsActivities = res.get('activities').getData();
-      osViewerFriendsActivities.each(function(osActivity) {
-        var postedUser = getPostedUser(osActivity.getField(opensocial.Activity.Field.ID));
-        var params = {
-          type: Activity.Type.EXO_PLATFORM,
-          content: osActivity.getField(opensocial.Activity.Field.TITLE),
-          displayName: postedUser.getDisplayName(),
-          profileUrl: postedUser.getField(opensocial.Person.Field.PROFILE_URL),
-          avatarUrl: postedUser.getField(opensocial.Person.Field.THUMBNAIL_URL),
-          postedTime: osActivity.getField(opensocial.Activity.Field.POSTED_TIME)
-        };
-        var activity = new Activity(params);
-        viewerFriendsActivities.push(activity);
+        //viewer's friends activities
+        if (res.hadError()) {
+          debug.warn('Failed to init viewer\'s friends activities');
+          debug.info(res);
+          return;
+        }
+        var osViewerFriendsActivities = res.get('activities').getData();
+        osViewerFriendsActivities.each(function(osActivity) {
+          var postedUser = getPostedUser(osActivity.getField(opensocial.Activity.Field.USER_ID));
+          debug.info('postedUser:');
+          debug.debug(postedUser);
+          var params = {
+            type: Activity.Type.EXO_PLATFORM,
+            content: osActivity.getField(opensocial.Activity.Field.TITLE),
+            displayName: postedUser.getDisplayName(),
+            profileUrl: postedUser.getField(opensocial.Person.Field.PROFILE_URL),
+            avatarUrl: postedUser.getField(opensocial.Person.Field.THUMBNAIL_URL),
+            postedTime: osActivity.getField(opensocial.Activity.Field.POSTED_TIME)
+          };
+          debug.info('osViewerFriendsActivities:');
+          debug.debug(osViewerFriendsActivities);
+          var activity = new Activity(params);
+          viewerFriendsActivities.push(activity);
+        });
+        $.merge(exoActivities, viewerFriendsActivities);
+        debug.info('final exoActivities:');
+        debug.debug(exoActivities);
+        successCallback();
       });
-      exoActivities.concat(viewerFriendsActivities);
     });
 
   }
@@ -180,24 +200,29 @@
   /**
    * Gets the latest number of activities.
    *
-   * If count == null or 0, the default value will be used (Configuration.getNumberOfActivitiesEachFetch()).
-   *
-   * @param count
    */
-  ActivityStream.getActivities = function(count) {
+  ActivityStream.getActivities = function() {
+    debug.debug('getActivities: ' + selectedType);
     if (selectedType === ActivityStream.Type.UNIFIED) {
       unifiedActivities = [];
-      unifiedActivities.concat(exoActivities);
-      unifiedActivities.concat(twitterActivities);
+      $.merge(unifiedActivities, exoActivities);
+      $.merge(unifiedActivities, twitterActivities);
       Util.sortActivities(unifiedActivities);
       return unifiedActivities;
 
     } else if (selectedType === ActivityStream.Type.EXO_PLATFORM) {
       Util.sortActivities(exoActivities);
       return exoActivities; //TODO only return ~ 20 activities/ page
-    } else if (selectedType == ActivityStream.Type.TWITTER) {
+    } else if (selectedType === ActivityStream.Type.TWITTER) {
       return twitterActivities;
+    } else if (selectedType === ActivityStream.Type.CONNECTIONS) {
+      Util.sortActivities(viewerFriendsActivities);
+      return viewerFriendsActivities;
+    } else if (selectedType === ActivityStream.Type.ME) {
+      Util.sortActivities(viewerActivities);
+      return viewerActivities;
     }
+    return [];
   };
 
   /**
@@ -262,4 +287,4 @@
 
   // exposes
   window_.ActivityStream = ActivityStream;
-})();
+})(jQuery);

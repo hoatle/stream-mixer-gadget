@@ -46,16 +46,60 @@
     <script type="text/javascript" src="script/Configuration.js"></script>
     <script type="text/javascript" src="script/Locale.js"></script>
     <script type="text/javascript" src="script/Util.js"></script>
+    <script type="text/javascript" src="script/AccountManager.js"></script>
     <script type="text/javascript" src="script/Activity.js"></script>
+    <script type="text/javascript" src="script/ActivityComposer.js"></script>
     <script type="text/javascript" src="script/ActivityStream.js"></script>
+    <script type="text/javascript" src="script/StreamMixer.js"></script>
     <!-- Prod Mode -->
     <!--
     <script type="text/javascript" src="script/jquery-1.16.1.min.js"></script>
     <script type="text/javascript" src="script/jquery-ui-1.18.12.min.js"></script>
     <script type="text/javascript" src="script/merged.min.js"></script>
     -->
+
     <div id="StreamMixer">
-      <div id="Loading">__MSG_loading__</div>
+      <div id="progressbar"></div>
+
+      <div id="Activitytemplate" class="Activity" style="display:none;">
+        <img id="avatarIcon" class="avatarIcon"/>
+        <div id="header">
+          <img id="activityIcon" class="activityIcon"/>
+          <span id="displayName" class="displayName"></span>
+          (<span id="postedDay" class="postedDay"></span>)
+        </div>
+        <div id="content" class="content"></div>
+      </div>
+
+      <div id="LoginForm" class="LoginForm" style="display: none;">
+        <img id="socialLogo" class="socialNetworkLogo"/>
+        <br/>
+        <label for="userName">_MSG_username__:</label><input id="userName"></input>
+        <br/>
+        <label for="passWord">_MSG_password__:</label><input id="passWord"></input>
+        <br/>
+        <label>&nbsp;</label>
+        <input type="button" value="_MSG_login__"></input>
+      </div>
+      <br/>
+
+      <div id="ActivityContent" style="display: none;">
+        <div id="statusForm">
+          <input id="statusTxt" class="statusTxt"/>
+          <input id="UpdateStatusButton" class="UpdateStatusButton" type="button" value="Post"/>
+          <div>
+            <label for="postToTwitter">_MSG_postTo__ Twitter:</label>
+            <input id="postToTwitter" type="checkbox"/>
+          </div>
+        </div>
+        <div id="StreamSelector">
+          <label for="StreamSelectTwitter">Twitter</label><input id="StreamSelectTwitter" type="checkbox" checked="checked"/>
+          <label for="StreamSelecteXo">eXo</label><input id="StreamSelecteXo" type="checkbox" checked="checked"/>
+        </div>
+        <div id="Activities">
+
+        </div>
+      </div>
     </div>
   ]]>
   </Content>

@@ -5,17 +5,25 @@
   $(document).ready(function() {
 		$("#ActivityContent").show();
 
-		var activityStream = new ActivityStream();
-		
-		Util.renderActivity(activityStream.getActivities(10));
-		var activityComposerParam = { 
+    ActivityStream.configure({
+      selectedType: ActivityStream.Type.EXO_PLATFORM,
+      onSuccess: function() {
+        debug.info('onSuccess with activities:');
+        debug.info(ActivityStream.getActivities());
+        Util.renderActivity(ActivityStream.getActivities());
+      },
+      onFail: function(msg) {
+        debug.error(msg);
+      }
+    });
+
+		var activityComposerParam = {
 			componentIds : {"textBoxId" : "statusTxt" , "shareButtonId":"UpdateStatusButton","twitterCheckBoxId": "postToTwitter"},
 			callback : {
 				onSuccess: function(){
-					//TODO process on post Success
+					
 				},
-				onFail : function(){
-					//TODO process on post Success
+				onSuccess: function(){
 				}
 			}
 		};
@@ -54,40 +62,25 @@
 													'password': passWord
 													}				
 			)
+<<<<<<< HEAD
+			$("#LoginForm").hide();
+			$("#ActivityContent").show();
+		});
+=======
 			AccountManager.authenticate(AccountManager.Type.TWITTER,{
-				onSuccess: function() {
+				'onSuccess': function() {
 					$("#LoginForm").hide();
 					$("#ActivityContent").show();					
 				},
-				onFail: function() {
+				'onFail': function() {
 					$("#dialog").dialog();
 					$("#LoginForm").hide();
 					$("#ActivityContent").show();
 				}
 			})
-			
+
 		})
-		var statusInput = $("#statusTxt");
-		$(statusInput).css("color","#CCCCCC");		
-		$(statusInput).focus(function(){
-			if($(this).css("color")=="rgb(204, 204, 204)"){
-				$(this).val("");
-				$(this).css("color","black");
-			}
-		});
-		$(statusInput).blur(function(){
-			if($(this).val()==""){
-				$(this).val("Default Text");
-				$(this).css("color","#CCCCCC");
-			}
-		});
-		
-		$("#moreButton").click(function(){
-		   if(activityStream.hasNewer()){
-			   Util.renderActivity(activityStream.getActivities(10));
-		   }
-		});
-		
+>>>>>>> 7d22b86453800b750b50c3af62b5c0054ab6aab7
 //		$("#LoginForm").show();
 //		$("#ActivityContent").hide();
   });
