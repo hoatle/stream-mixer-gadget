@@ -52,7 +52,7 @@
 
       var viewerFriendsOpts = {};
       viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.FIRST] = 0;
-      viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.MAX] = 100;
+      viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.MAX] = 150;
       viewerFriendsOpts[opensocial.DataRequest.PeopleRequestFields.PROFILE_DETAILS] =
               [opensocial.Person.Field.ID,
                 opensocial.Person.Field.NAME,
@@ -151,7 +151,7 @@
           content: unescape(osActivityTitle),
           displayName: viewer.getDisplayName(),
           profileUrl: viewer.getField(opensocial.Person.Field.PROFILE_URL),
-          avatarUrl: viewer.getField(opensocial.Person.Field.THUMBNAIL_URL),
+          avatarUrl: avatarUrl,
           postedTime: osActivity.getField(opensocial.Activity.Field.POSTED_TIME)
         };
         debug.info('osViewerActivities:');
@@ -179,6 +179,10 @@
         var osViewerFriendsActivities = res.get('activities').getData();
         osViewerFriendsActivities.each(function(osActivity) {
           var postedUser = getPostedUser(osActivity.getField(opensocial.Activity.Field.USER_ID));
+          if (!postedUser) {
+            debug.error('Failed to get user with userId: ' + osActivity.getField(opensocial.Activity.Field.USER_ID));
+            debug.debug(osActivity);
+          }
           var avatarUrl = postedUser.getField(opensocial.Person.Field.THUMBNAIL_URL);
           //Tricky, Social's bug
           if (!avatarUrl) {
@@ -195,7 +199,7 @@
             content: unescape(osActivityTitle),
             displayName: postedUser.getDisplayName(),
             profileUrl: postedUser.getField(opensocial.Person.Field.PROFILE_URL),
-            avatarUrl: postedUser.getField(opensocial.Person.Field.THUMBNAIL_URL),
+            avatarUrl: avatarUrl,
             postedTime: osActivity.getField(opensocial.Activity.Field.POSTED_TIME)
           };
           debug.info('osViewerFriendsActivities:');
