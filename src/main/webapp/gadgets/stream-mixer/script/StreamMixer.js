@@ -2,7 +2,17 @@
  * The main entry point for application
  */
 (function($) {
+
+  $('progressbar').progressbar({
+    value: 10
+  });
+
   $(document).ready(function() {
+
+    $('progressbar').progressbar({
+      value: 15
+    });
+
     $("#ActivityContent").show();
 
     ActivityStream.configure({

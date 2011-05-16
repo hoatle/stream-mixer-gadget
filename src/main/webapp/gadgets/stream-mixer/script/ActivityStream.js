@@ -68,6 +68,9 @@
         viewerFriends = res.get('viewerFriends').getData();
         debug.info('viewerFriends:');
         debug.debug(viewerFriends);
+        $('#progressbar').progressbar({
+          value: 30
+        });
         initActivities();
       });
     });
@@ -159,6 +162,9 @@
         var activity = new Activity(params);
         viewerActivities.push(activity);
       });
+      $('#progressbar').progressbar({
+        value: 50
+      });
       debug.info('viewerActivities:');
       debug.debug(viewerActivities);
       $.merge(exoActivities, viewerActivities);
@@ -212,6 +218,9 @@
         debug.info('final exoActivities:');
         debug.debug(exoActivities);
         successCallback();
+      $('#progressbar').progressbar({
+        value: 80
+      });
       });
     });
 

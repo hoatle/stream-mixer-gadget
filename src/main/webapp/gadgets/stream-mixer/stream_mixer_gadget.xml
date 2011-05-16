@@ -81,7 +81,7 @@
       <br/>
 
       <div id="ActivityContent" style="display: none;">
-        <div id="Activities">
+        <div id="Activities" style="height:500px; margin:0; overflow:scroll">
 
         </div>
       </div>

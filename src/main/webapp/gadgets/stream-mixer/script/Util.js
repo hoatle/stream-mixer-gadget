@@ -243,6 +243,11 @@
     $.each(activities, function(index, value) {
       Util.addActivity(value);
     });
+    gadgets.window.adjustHeight();
+    $('#progressbar').progressbar({
+      value: 100
+    });
+    $('#progressbar').hide('slow');
   };
 
   //exposes

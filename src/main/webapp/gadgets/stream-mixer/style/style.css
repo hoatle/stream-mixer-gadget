@@ -82,7 +82,7 @@ br {
   height: 25px;
 }
 
-#Activitites {
+#Activities {
   height: 500px;
   margin: 0;
   overflow: scroll;
@@ -92,6 +92,11 @@ br {
 
 #Activity a, a:link, a:active, a:hover, a:visited {
   color: gray;
+  font-size: 14px;
+}
+
+.ui-progressbar {
+    height: 1em;
 }
 
 .ui-progressbar-value {
