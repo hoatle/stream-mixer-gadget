@@ -146,7 +146,7 @@
         }
         var params = {
           type: Activity.Type.EXO_PLATFORM,
-          content: unescape(osActivity.getField(opensocial.Activity.Field.TITLE)),
+          content: osActivity.getField(opensocial.Activity.Field.TITLE),
           displayName: viewer.getDisplayName(),
           profileUrl: viewer.getField(opensocial.Person.Field.PROFILE_URL),
           avatarUrl: viewer.getField(opensocial.Person.Field.THUMBNAIL_URL),
@@ -188,7 +188,7 @@
           debug.debug(postedUser);
           var params = {
             type: Activity.Type.EXO_PLATFORM,
-            content: unescape(osActivity.getField(opensocial.Activity.Field.TITLE)),
+            content: osActivity.getField(opensocial.Activity.Field.TITLE),
             displayName: postedUser.getDisplayName(),
             profileUrl: postedUser.getField(opensocial.Person.Field.PROFILE_URL),
             avatarUrl: postedUser.getField(opensocial.Person.Field.THUMBNAIL_URL),
